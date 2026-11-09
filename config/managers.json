@@ -20,11 +20,11 @@
     "display": "KernelSU-Next",
     "repo": "KernelSU-Next/KernelSU-Next",
     "default_ref": "dev",
-    "susfs_repo": "pershoot/KernelSU-Next",
-    "susfs_ref": "dev-susfs",
+    "susfs_repo": "KernelSU-Next/KernelSU-Next",
+    "susfs_ref": "dev",
     "setup_path": "kernel/setup.sh",
-    "status": "official-default-forked-susfs",
-    "notes": "Official dev branch for non-SUSFS builds. SUSFS builds use pershoot/KernelSU-Next@dev-susfs, a fork branch based on official dev with SUSFS integration."
+    "status": "official",
+    "notes": "Official dev branch for non-SUSFS builds. SUSFS builds also use upstream KernelSU-Next/KernelSU-Next@dev; a manager ref such as a pinned commit can be supplied via manager_ref."
   },
   "sukisu-ultra": {
     "display": "SukiSU Ultra",

@@ -82,7 +82,8 @@ if [[ "${ENABLE_SUSFS}" == "true" ]]; then
       exit 1
       ;;
     kernelsu-next)
-      [[ -z "${MANAGER_REF}" || "${MANAGER_REF}" == "dev-susfs" ]] || { echo "::error::KernelSU-Next + SUSFS requires pershoot dev-susfs ref"; exit 1; }
+      # Upstream KernelSU-Next with SUSFS: any manager ref (branch, tag or
+      # commit, e.g. 8c63b58) is allowed; the ref is pinned by the builder.
       ;;
     sukisu-ultra)
       [[ -z "${MANAGER_REF}" || "${MANAGER_REF}" == "builtin" ]] || { echo "::error::SukiSU Ultra + SUSFS requires official ref builtin"; exit 1; }

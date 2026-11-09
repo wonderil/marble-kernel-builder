@@ -59,6 +59,10 @@ on:
         description: "Manager: ReSukiSU"
         type: boolean
         default: false
+      manager_ref:
+        description: "Kernel manager ref (branch, tag or commit) for the selected root manager, e.g. 8c63b58 for upstream KernelSU-Next with SUSFS; empty means the manager default"
+        type: string
+        default: ''
 
       # ── Configuration & Features ──
       enable_susfs:
@@ -76,6 +80,10 @@ on:
           - custom
       susfs_ref:
         description: "SUSFS branch/tag/commit (only for custom version)"
+        required: false
+        default: ""
+      susfs_expected_version:
+        description: "Expected SUSFS version to verify, e.g. v2.4.0; empty means skip verification"
         required: false
         default: ""
       source_ref:
@@ -184,12 +192,12 @@ jobs:
       kernel_source: ${{ matrix.kernel_source }}
       source_ref: ${{ inputs.source_ref }}
       manager: ${{ matrix.manager }}
-      manager_ref: ""
+      manager_ref: ${{ inputs.manager_ref }}
       enable_susfs: ${{ fromJSON(matrix.enable_susfs) }}
       susfs_version: ${{ inputs.susfs_version }}
       susfs_kernel_branch: gki-android12-5.10
       susfs_ref: ${{ inputs.susfs_ref }}
-      susfs_expected_version: ""
+      susfs_expected_version: ${{ inputs.susfs_expected_version }}
       build_scope: ${{ inputs.build_scope }}
       toolchain: ${{ inputs.toolchain }}
       lto: ${{ inputs.lto }}

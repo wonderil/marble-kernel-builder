@@ -2,7 +2,7 @@
   "melt": {
     "display": "Melt",
     "author": "Melt",
-    "repo": "mohdakil2426/android_kernel_xiaomi_marble",
+    "repo": "Pzqqt/android_kernel_xiaomi_marble",
     "default_ref": "melt-rebase",
     "rom_label": "HyperOS",
     "rom_family": "hyperos",

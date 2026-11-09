@@ -72,18 +72,17 @@ expect_validation_success kernelsu-next true
 SOURCE_REPO=owner/repo \
 SOURCE_REF=main \
 MANAGER=kernelsu-next \
-MANAGER_REF=dev-susfs \
+MANAGER_REF=8c63b58 \
 ENABLE_SUSFS=true \
 bash scripts/validate-inputs.sh >/dev/null
-if SOURCE_REPO=owner/repo SOURCE_REF=main MANAGER=kernelsu-next MANAGER_REF=dev ENABLE_SUSFS=true \
-   bash scripts/validate-inputs.sh >/dev/null 2>&1; then
-  fail "validation accepted official KernelSU-Next dev with SUSFS"
-fi
+SOURCE_REPO=owner/repo SOURCE_REF=main MANAGER=kernelsu-next MANAGER_REF=dev ENABLE_SUSFS=true \
+   bash scripts/validate-inputs.sh >/dev/null \
+  || fail "validation rejected official KernelSU-Next dev with SUSFS"
 expect_validation_success sukisu-ultra true
 expect_validation_success resukisu true
 
 if SOURCE_REPO=owner/repo SOURCE_REF=main MANAGER=kernelsu-next ENABLE_SUSFS=true \
-   MANAGER_REF=dev-susfs \
+   MANAGER_REF=8c63b58 \
    SUSFS_KERNEL_BRANCH=gki-android14-6.1 bash scripts/validate-inputs.sh >/dev/null 2>&1; then
   fail "validation accepted a non-Marble SUSFS patch family"
 fi
@@ -94,10 +93,10 @@ with open("config/managers.json", encoding="utf-8") as handle:
     managers = json.load(handle)
 
 ksun = managers["kernelsu-next"]
-if ksun.get("susfs_repo") != "pershoot/KernelSU-Next":
-    raise SystemExit("FAIL: KernelSU-Next SUSFS repo must be pershoot/KernelSU-Next")
-if ksun.get("susfs_ref") != "dev-susfs":
-    raise SystemExit("FAIL: KernelSU-Next SUSFS ref must be dev-susfs")
+if ksun.get("susfs_repo") != "KernelSU-Next/KernelSU-Next":
+    raise SystemExit("FAIL: KernelSU-Next SUSFS repo must be upstream KernelSU-Next/KernelSU-Next")
+if ksun.get("susfs_ref") != "dev":
+    raise SystemExit("FAIL: KernelSU-Next SUSFS ref must be dev")
 PY
 
 if ! grep -q 'manager-setup.sh "${manager_commit}"' scripts/patch-manager.sh; then
